@@ -1,0 +1,31 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+    {% if positions %}
+        <table>
+            {% for position in positions %}
+                <tr>
+                    <td>
+                        <button>
+                            <a href="{{ url_for('positions.get_position', id=position.id) }}">{{ position.name }}</a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h1>Посади ще не додані</h1>
+    {% endif %}
+
+    <form action="{{ url_for('positions.add_position') }}" method="post">
+        <p>
+            <label>Назва посади</label>
+            <input name="name">
+        </p>
+        <p>
+            <button type="submit">Додати нову посаду</button>
+        </p>
+    </form>
+
+{% endblock content %}
